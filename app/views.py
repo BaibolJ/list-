@@ -40,6 +40,17 @@ def regV(request):
     return render(request,'app/register.html',context)
 
 
-
+def loginVi(request):
+    if request.method =='POST':
+        name = request.POST.get('name')
+        password = request.POST.get('password')
+        try:
+            user = User.objects.get(username=name)
+        except Exception as e:
+            print(f"no user {e}")
+            user = authenticate(username=name, password=password)
+            login(request,user)
+            redirect('home')
+    return render(request,'app/login.html')
 
 
