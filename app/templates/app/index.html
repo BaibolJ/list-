@@ -1,3 +1,4 @@
+
 {% load static %}
 <html lang="en">
     <head>
@@ -36,7 +37,7 @@ https://templatemo.com/tm-590-topic-listing
 
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="{% url 'home' %}">
                         <i class="bi-back"></i>
                         <span>BayHolding</span>
                     </a>
@@ -56,7 +57,7 @@ https://templatemo.com/tm-590-topic-listing
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_2">Browse Topics</a>
+                                <a class="nav-link" href="{% url 'create' %}">Создать курс</a>
                             </li>
 
                             <li class="nav-item">
@@ -233,7 +234,7 @@ https://templatemo.com/tm-590-topic-listing
                                         {% for ux_ui_course in ux_ui_courses %}
                                             <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
                                             <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
+                                                <a href="{% url 'course_detail' ux_ui_course.id %}">
                                                     <div class="d-flex">
                                                         <div>
                                                             <h5 class="mb-2">{{ ux_ui_course.title }}</h5>
@@ -257,7 +258,7 @@ https://templatemo.com/tm-590-topic-listing
                                         {% for python_course in python_courses %}
                                         <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
                                                 <div class="custom-block bg-white shadow-lg">
-                                                    <a href="topics-detail.html">
+                                                    <a href="{% url 'course_detail' python_course.id %}">
                                                         <div class="d-flex">
                                                             <div>
                                                                 <h5 class="mb-2">{{ python_course.title}}</h5>
@@ -281,7 +282,7 @@ https://templatemo.com/tm-590-topic-listing
                                         {% for js_course in js_courses %}
                                             <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-0">
                                             <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
+                                                <a href="{% url 'course_detail' js_course.id %}">
                                                     <div class="d-flex">
                                                         <div>
                                                             <h5 class="mb-2">{{ js_course.title }}</h5>
@@ -305,7 +306,7 @@ https://templatemo.com/tm-590-topic-listing
                                         {% for pm_course in pm_courses %}
                                             <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
                                             <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
+                                                <a href="{% url 'course_detail' pm_course.id %}">
                                                     <div class="d-flex">
                                                         <div>
                                                             <h5 class="mb-2">{{pm_course.title}}</h5>
@@ -329,7 +330,7 @@ https://templatemo.com/tm-590-topic-listing
                                         {% for html_css_course in html_css_courses %}
                                             <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-3">
                                             <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
+                                                <a href="{% url 'course_detail' html_css_course.id %}">
                                                     <div class="d-flex">
                                                         <div>
                                                             <h5 class="mb-2">{{html_css_course.title}}</h5>

@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from .models import FAQ,Course
+from .models import FAQ,Course,Enrollment
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
+from .forms import EnrollmentCreateForm,EnrollmentUpeForm
 
 
 def index(request):
@@ -52,5 +53,45 @@ def loginVi(request):
             login(request,user)
             redirect('home')
     return render(request,'app/login.html')
+
+
+def course_detail(request, course_id):
+    enroll = Enrollment.objects.get(course=course_id)
+    if request.method == 'POST':
+        form = EnrollmentUpeForm(request.POST, instance=enroll)
+
+        if form.is_valid():
+            form.save()
+
+        return redirect('course_detail',enroll.course_id)
+
+    form = EnrollmentUpeForm(instance=enroll)
+    return render(request, 'app/topics-detail.html', {'enrollment': enroll, 'form':form})
+
+
+def home(request):
+    return render(request, 'app/index.html')
+
+
+def course_create(request):
+    if request.method == 'POST':
+        form = EnrollmentCreateForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+
+        return redirect('home')
+
+    form = EnrollmentCreateForm()
+    return render(request,'app/course_create.html',{'form':form})
+
+
+def course_delete(request, pk):
+    enrollment = Enrollment.objects.get(pk=pk)
+    enrollment.delete()
+    return redirect('home')
+
+
+
 
 

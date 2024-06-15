@@ -27,4 +27,28 @@ class Course(models.Model):
         verbose_name_plural = 'Курсы на веб_сайт'
 
 
+class Enrollment(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course_time = models.CharField(max_length=77)
+    course_day = models.CharField(max_length=23)
+    course_duration = models.CharField(max_length=123)
+    is_teens = models.BooleanField()
+    price = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    status = models.PositiveSmallIntegerField(
+        choices=(
+            (1, "Идет набор!"),
+            (2, 'Набор зактрыт!'),
+            (3, "Скоро набор!")
+        ),
+        default=3
+    )
+    created_date = models.DateField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Курс'
+        verbose_name_plural = 'Курс'
+
+    def __str__(self):
+        return str(self.course)
+
 
