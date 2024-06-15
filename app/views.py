@@ -92,6 +92,11 @@ def course_delete(request, pk):
     return redirect('home')
 
 
+def course_list(request):
+    courses = Course.objects.all()
+    return render(request, 'app/listing.html', {'courses': courses})
+
+
 
 
 
